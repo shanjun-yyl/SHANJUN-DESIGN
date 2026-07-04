@@ -1,0 +1,45 @@
+# Runtime logs and temporary files
+*.log
+tmp/
+server.stdout.log
+server.stderr.log
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Local Codex workspace metadata
+.agents/
+
+# Design source files and local notes
+*.psd
+showcase_dims.txt
+严依伦个人作品集-2026.pdf
+
+# Raw source image folders replaced by optimized web assets
+1/
+品牌营销/
+影视美宣/
+字体排版jpg/
+个人创作/
+滚动图/
+
+# Unused root-level source previews / backups
+1.jpg
+center_logo_trim.png
+logo.png
+personal-creation-card.jpg
+showcase-*.jpg
+ui_psd_preview.png
+vector_logo_preview.*
+wechat-qr.jpg
+wordmark_logo_trim.png
+个人简历.jpg
+图1.jpg
+图2.jpg
+组 29.jpg
+肖像照.jpg
+首页logo.png

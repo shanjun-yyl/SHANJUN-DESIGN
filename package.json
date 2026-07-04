@@ -1,0 +1,11 @@
+{
+  "name": "yan-yilun-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "严依伦个人作品集网站",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js",
+    "check": "node --check script.js && node --check gallery.js && node --check server.js"
+  }
+}

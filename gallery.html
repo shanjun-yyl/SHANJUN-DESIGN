@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品详情 | 严依伦</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="gallery-body">
+    <header class="site-header" aria-label="主导航">
+      <a class="brand" href="./index.html" aria-label="返回作品集首页">
+        <img class="brand-logo" src="./顶部左侧logo.png" alt="SHANJUN logo" />
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="./index.html#works-waterfall">WORK</a>
+        <a href="./gallery.html?gallery=brand">BRAND</a>
+        <a href="./gallery.html?gallery=movie">MOVIE</a>
+        <a href="./gallery.html?gallery=logo">LOGO</a>
+        <a href="./gallery.html?gallery=aigc">AIGC</a>
+        <a href="./index.html#profile">ABOUT ME</a>
+      </nav>
+      <a class="contact-pill" href="./index.html#contact">CONTACT</a>
+    </header>
+
+    <main class="gallery-page">
+      <header class="gallery-hero">
+        <div class="gallery-heading-copy">
+          <h1 id="gallery-title">WORKS</h1>
+          <p id="gallery-kicker">PORTFOLIO COLLECTION</p>
+        </div>
+        <div class="gallery-wordmark">
+          <img src="./组 29.png" alt="SHANJUN DESIGN" />
+        </div>
+        <p class="gallery-subtitle" id="gallery-subtitle">DESIGN MAKES IDEAS SHINE</p>
+      </header>
+
+      <section class="gallery-masonry" id="gallery-masonry" aria-label="作品瀑布流"></section>
+    </main>
+
+    <script src="./vendor/gsap.min.js"></script>
+    <script src="./vendor/ScrollTrigger.min.js"></script>
+    <script src="./gallery.js"></script>
+  </body>
+</html>
