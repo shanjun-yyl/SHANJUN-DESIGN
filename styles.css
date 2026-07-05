@@ -648,6 +648,9 @@ img {
 
 .about-copy {
   --about-copy-inset: 0px;
+  --about-readable-width: calc(
+    100vw - (var(--frame-x) * 2) - max(494px, 26.2vw) - clamp(132px, 9vw, 190px)
+  );
   display: grid;
   min-height: calc(520px * 702 / 467);
   grid-template-rows: auto auto 1fr auto;
@@ -685,7 +688,7 @@ img {
 
 .about-copy p {
   box-sizing: border-box;
-  width: 100%;
+  width: min(100%, var(--about-readable-width));
   max-width: 1320px;
   margin: 0;
   padding-left: var(--about-copy-inset);
@@ -696,10 +699,20 @@ img {
   text-align: left;
 }
 
+.about-copy p > span,
+.experience-item p > span {
+  display: block;
+}
+
+.about-copy p > span + span,
+.experience-item p > span + span {
+  margin-top: 0.66em;
+}
+
 .stat-row {
   box-sizing: border-box;
   display: grid;
-  width: 100%;
+  width: min(100%, var(--about-readable-width));
   max-width: none;
   grid-template-columns: minmax(240px, 1fr) minmax(320px, 1.08fr) minmax(320px, 1fr);
   gap: 0;
@@ -2066,6 +2079,7 @@ img {
   }
 
   .about-copy {
+    --about-readable-width: 100%;
     gap: 18px;
     padding-top: 0;
   }
