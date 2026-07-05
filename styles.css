@@ -1374,137 +1374,33 @@ img {
 .contact-section {
   display: grid;
   place-items: center;
-  padding: clamp(72px, 8vw, 132px) var(--frame-x);
+  min-height: clamp(280px, 38vw, 460px);
+  padding: clamp(76px, 9vw, 144px) var(--frame-x);
   background: #000;
-  text-align: left;
+  text-align: center;
 }
 
 .contact-panel {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1fr);
-  gap: clamp(20px, 3vw, 44px);
-  width: min(100%, 1120px);
-  padding: clamp(26px, 4vw, 52px);
-  border: 1px solid rgba(244, 242, 235, 0.18);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(135deg, rgba(224, 0, 0, 0.16), rgba(255, 255, 255, 0.035) 38%, rgba(255, 255, 255, 0.02)),
-    #050505;
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+  place-items: center;
+  width: min(100%, 760px);
+  margin: 0 auto;
 }
 
-.contact-eyebrow,
-.contact-panel h2,
-.contact-copy {
+.contact-statement {
+  display: grid;
   margin: 0;
-}
-
-.contact-eyebrow {
-  grid-column: 1 / -1;
   color: var(--red);
-  font-size: clamp(15px, 1.1vw, 18px);
-  line-height: 1;
-  font-weight: 900;
+  font-size: clamp(38px, 5.25vw, 76px);
+  line-height: 0.91;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.contact-panel h2 {
-  color: #fff;
-  font-size: clamp(40px, 5.8vw, 92px);
-  line-height: 0.92;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.contact-copy {
-  align-self: end;
-  max-width: 46ch;
-  color: rgba(244, 242, 235, 0.74);
-  font-size: clamp(16px, 1.25vw, 20px);
-  line-height: 1.6;
-  font-weight: 500;
-}
-
-.contact-actions {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: clamp(4px, 1vw, 12px);
-}
-
-.contact-action {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 64px;
-  gap: 16px;
-  padding: 17px 18px;
-  border: 1px solid rgba(244, 242, 235, 0.18);
-  border-radius: var(--radius);
-  color: #fff;
-  background: rgba(255, 255, 255, 0.065);
-  font-size: clamp(15px, 1.1vw, 18px);
-  font-weight: 850;
-  line-height: 1.15;
-  transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.contact-action span {
-  flex: 0 0 auto;
-  color: rgba(244, 242, 235, 0.62);
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.contact-action-primary {
-  border-color: var(--red);
-  background: var(--red);
-}
-
-.contact-action-primary span {
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.contact-action-ghost {
-  color: rgba(244, 242, 235, 0.74);
-  background: transparent;
-}
-
-.contact-action-note,
-.portfolio-button-note {
-  cursor: default;
-}
-
-.contact-action:hover,
-.contact-action:focus-visible {
-  border-color: rgba(244, 242, 235, 0.46);
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  outline: none;
-  transform: translateY(-2px);
-}
-
-.contact-action-primary:hover,
-.contact-action-primary:focus-visible {
-  border-color: #ff2626;
-  background: #ff1c1c;
-}
-
-.contact-action-note:hover {
-  border-color: rgba(244, 242, 235, 0.18);
-  background: transparent;
-  color: rgba(244, 242, 235, 0.74);
-  transform: none;
-}
-
-.contact-action:active {
-  transform: translateY(1px);
+.contact-statement span {
+  display: block;
 }
 
 .site-footer {
@@ -1710,6 +1606,10 @@ img {
 
 .portfolio-button-primary span {
   color: rgba(255, 255, 255, 0.78);
+}
+
+.portfolio-button-note {
+  cursor: default;
 }
 
 .portfolio-button:hover,
@@ -2018,17 +1918,12 @@ img {
     min-height: auto;
   }
 
-  .contact-panel,
   .portfolio-hero {
     grid-template-columns: 1fr;
   }
 
-  .contact-copy {
-    max-width: 62ch;
-  }
-
-  .contact-actions {
-    grid-template-columns: 1fr;
+  .contact-statement {
+    font-size: clamp(42px, 8vw, 68px);
   }
 
   .portfolio-hero-actions {
@@ -2310,23 +2205,19 @@ img {
   }
 
   .contact-section {
-    padding: 56px 18px 70px;
+    min-height: 260px;
+    padding: 58px 18px 68px;
   }
 
   .contact-panel {
-    gap: 18px;
-    padding: 22px;
+    width: min(100%, 520px);
   }
 
-  .contact-panel h2 {
-    font-size: clamp(38px, 11vw, 62px);
+  .contact-statement {
+    font-size: clamp(28px, 8.4vw, 48px);
+    line-height: 0.94;
   }
 
-  .contact-copy {
-    font-size: 15px;
-  }
-
-  .contact-action,
   .portfolio-button {
     min-height: 58px;
     padding: 15px 16px;
@@ -2389,7 +2280,6 @@ img {
 }
 
 @media (max-width: 620px) {
-  .contact-action,
   .portfolio-button {
     align-items: flex-start;
     flex-direction: column;
