@@ -277,7 +277,7 @@ const galleryImages = orderGalleryImages(galleryKey, gallery.images)
       thumbSrc: thumbnailGallerySources.get(src) || fullSrc
     };
   });
-const shouldBatchGallery = galleryImages.length > 12;
+const shouldBatchGallery = galleryImages.length > 36;
 const initialGalleryBatchSize = shouldBatchGallery ? 8 : galleryImages.length;
 const galleryBatchSize = shouldBatchGallery ? 6 : galleryImages.length;
 const eagerGalleryImageCount = Math.min(4, galleryImages.length);
