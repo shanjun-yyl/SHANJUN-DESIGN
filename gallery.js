@@ -198,14 +198,19 @@ const gallerySets = {
   }
 };
 
-const optimizedGallerySources = new Map(
-  Object.values(gallerySets)
-    .flatMap((set) => set.images)
-    .map((src, index) => [
-      src,
-      `./assets/gallery-optimized/gallery-${String(index + 1).padStart(3, "0")}.webp`
-    ])
-);
+function buildGallerySourceMap(folderName) {
+  return new Map(
+    Object.values(gallerySets)
+      .flatMap((set) => set.images)
+      .map((src, index) => [
+        src,
+        `./assets/${folderName}/gallery-${String(index + 1).padStart(3, "0")}.webp`
+      ])
+  );
+}
+
+const optimizedGallerySources = buildGallerySourceMap("gallery-optimized");
+const thumbnailGallerySources = buildGallerySourceMap("gallery-thumbs");
 
 const params = new URLSearchParams(window.location.search);
 const galleryKey = params.get("gallery") || "brand";
@@ -265,10 +270,16 @@ function orderGalleryImages(key, images) {
 }
 
 const galleryImages = orderGalleryImages(galleryKey, gallery.images)
-  .map((src) => optimizedGallerySources.get(src) || src);
-const shouldBatchGallery = galleryImages.length > 36;
-const initialGalleryBatchSize = shouldBatchGallery ? 12 : galleryImages.length;
-const galleryBatchSize = shouldBatchGallery ? 8 : galleryImages.length;
+  .map((src) => {
+    const fullSrc = optimizedGallerySources.get(src) || src;
+    return {
+      fullSrc,
+      thumbSrc: thumbnailGallerySources.get(src) || fullSrc
+    };
+  });
+const shouldBatchGallery = galleryImages.length > 12;
+const initialGalleryBatchSize = shouldBatchGallery ? 8 : galleryImages.length;
+const galleryBatchSize = shouldBatchGallery ? 6 : galleryImages.length;
 const eagerGalleryImageCount = Math.min(4, galleryImages.length);
 
 document.title = `${gallery.title} | 严依伦`;
@@ -285,7 +296,7 @@ let activeImageIndex = 0;
 let renderedImageCount = 0;
 let galleryMotion = null;
 
-function createGalleryItem(src, index) {
+function createGalleryItem(imageSource, index) {
   const figure = document.createElement("figure");
   figure.className = "gallery-item";
   figure.tabIndex = 0;
@@ -293,9 +304,10 @@ function createGalleryItem(src, index) {
   figure.setAttribute("aria-label", `放大查看${gallery.title}作品 ${index + 1}`);
 
   const image = document.createElement("img");
-  image.src = src;
+  image.src = imageSource.thumbSrc;
   image.alt = `${gallery.title}作品 ${index + 1}`;
   image.decoding = "async";
+  image.sizes = "(max-width: 620px) 100vw, (max-width: 1100px) 50vw, 25vw";
 
   if (index < eagerGalleryImageCount) {
     image.loading = "eager";
@@ -365,7 +377,7 @@ function setupGalleryBatchLoader() {
         batchObserver.disconnect();
       }
     }, {
-      rootMargin: "720px 0px",
+      rootMargin: "560px 0px",
       threshold: 0
     });
 
@@ -374,7 +386,7 @@ function setupGalleryBatchLoader() {
   }
 
   function handleScrollLoad() {
-    if (window.innerHeight + window.scrollY < document.body.offsetHeight - 1200) {
+    if (window.innerHeight + window.scrollY < document.body.offsetHeight - 900) {
       return;
     }
 
@@ -569,15 +581,30 @@ lightbox.append(lightboxBackdrop, lightboxFrame);
 document.body.appendChild(lightbox);
 
 function updateLightboxImage() {
-  const src = galleryImages[activeImageIndex];
+  const src = galleryImages[activeImageIndex].fullSrc;
   lightboxImage.src = src;
   lightboxImage.alt = `${gallery.title}作品 ${activeImageIndex + 1}`;
   lightboxCount.textContent = `${activeImageIndex + 1} / ${galleryImages.length}`;
 }
 
+function preloadLightboxNeighbors() {
+  if (galleryImages.length < 2) {
+    return;
+  }
+
+  [-1, 1].forEach((offset) => {
+    const preloadIndex = (activeImageIndex + offset + galleryImages.length) % galleryImages.length;
+    const preloadImage = new Image();
+    preloadImage.decoding = "async";
+    preloadImage.fetchPriority = "low";
+    preloadImage.src = galleryImages[preloadIndex].fullSrc;
+  });
+}
+
 function openLightbox(index) {
   activeImageIndex = index;
   updateLightboxImage();
+  preloadLightboxNeighbors();
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.classList.add("lightbox-open");
@@ -594,6 +621,7 @@ function closeLightbox() {
 function showLightboxImage(direction) {
   activeImageIndex = (activeImageIndex + direction + galleryImages.length) % galleryImages.length;
   updateLightboxImage();
+  preloadLightboxNeighbors();
 }
 
 lightboxBackdrop.addEventListener("click", closeLightbox);

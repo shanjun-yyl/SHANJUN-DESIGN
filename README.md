@@ -44,7 +44,8 @@ http://127.0.0.1:4173/
 ## 资产说明
 
 - 首页图片使用 `assets/optimized/`。
-- 作品详情页图片使用 `assets/gallery-optimized/`。
+- 作品详情页列表缩略图使用 `assets/gallery-thumbs/`。
+- 作品详情页灯箱大图使用 `assets/gallery-optimized/`。
 - 作品集网页预览使用 `assets/portfolio-preview/`。
 
 ## 检查命令
