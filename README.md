@@ -34,6 +34,13 @@ http://127.0.0.1:4173/
 4. Branch 选择 `main`，目录选择 `/root`。
 5. 等待 GitHub Pages 生成访问链接。
 
+如果使用 Cloudflare Pages：
+
+1. Framework preset 选择 `None`。
+2. Build command 填写 `npm run build`。
+3. Build output directory 填写 `dist`。
+4. 保存后重新部署。
+
 ## 资产说明
 
 - 首页图片使用 `assets/optimized/`。

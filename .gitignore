@@ -1,6 +1,7 @@
 # Runtime logs and temporary files
 *.log
 tmp/
+dist/
 server.stdout.log
 server.stderr.log
 
