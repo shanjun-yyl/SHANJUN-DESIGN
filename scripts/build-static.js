@@ -6,6 +6,7 @@ const outDir = path.join(root, "dist");
 
 const entriesToCopy = [
   "index.html",
+  "_headers",
   "gallery.html",
   "portfolio.html",
   "styles.css",

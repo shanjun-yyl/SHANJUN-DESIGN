@@ -267,8 +267,9 @@ function orderGalleryImages(key, images) {
 const galleryImages = orderGalleryImages(galleryKey, gallery.images)
   .map((src) => optimizedGallerySources.get(src) || src);
 const shouldBatchGallery = galleryImages.length > 36;
-const initialGalleryBatchSize = shouldBatchGallery ? 28 : galleryImages.length;
-const galleryBatchSize = shouldBatchGallery ? 16 : galleryImages.length;
+const initialGalleryBatchSize = shouldBatchGallery ? 12 : galleryImages.length;
+const galleryBatchSize = shouldBatchGallery ? 8 : galleryImages.length;
+const eagerGalleryImageCount = Math.min(4, galleryImages.length);
 
 document.title = `${gallery.title} | 严依伦`;
 
@@ -294,8 +295,15 @@ function createGalleryItem(src, index) {
   const image = document.createElement("img");
   image.src = src;
   image.alt = `${gallery.title}作品 ${index + 1}`;
-  image.loading = "lazy";
   image.decoding = "async";
+
+  if (index < eagerGalleryImageCount) {
+    image.loading = "eager";
+    image.fetchPriority = index < 2 ? "high" : "auto";
+  } else {
+    image.loading = "lazy";
+    image.fetchPriority = "low";
+  }
 
   figure.addEventListener("click", () => openLightbox(index));
   figure.addEventListener("keydown", (event) => {
@@ -357,7 +365,7 @@ function setupGalleryBatchLoader() {
         batchObserver.disconnect();
       }
     }, {
-      rootMargin: "1200px 0px",
+      rootMargin: "720px 0px",
       threshold: 0
     });
 
