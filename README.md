@@ -46,8 +46,6 @@ http://127.0.0.1:4173/
 - 首页图片使用 `assets/optimized/`。
 - 作品详情页图片使用 `assets/gallery-optimized/`。
 - 作品集网页预览使用 `assets/portfolio-preview/`。
-- `严依伦个人作品集-2026-light.pdf` 是压缩 PDF，适合快速下载。
-- `严依伦个人作品集-2026.pdf` 是高清原件，约 70MB，默认保留在本地并通过 `.gitignore` 排除，避免 GitHub 大文件警告。
 
 ## 检查命令
 

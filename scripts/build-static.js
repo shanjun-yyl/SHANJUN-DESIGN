@@ -18,7 +18,6 @@ const entriesToCopy = [
   "组 30.png",
   "组 51.png",
   "顶部左侧logo.png",
-  "严依伦个人作品集-2026-light.pdf",
   "assets",
   "vendor",
   "卡片板块",
